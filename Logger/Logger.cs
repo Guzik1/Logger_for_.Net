@@ -9,7 +9,12 @@ namespace NLogger
         List<ILoggerOutput> logOutput = new List<ILoggerOutput>();
         List<ILogFormater> formaters = new List<ILogFormater>();
 
-        public void AddDefaultConsoleOutput()
+        public Logger() { }
+
+        public Logger(ILoggerOutput output, ILogFormater formater)
+            => AddOutput(output, formater);
+
+        public void AddDefaultConsoleOutputAndDefaultConsoleFormater()
         {
             logOutput.Add(new ConsoleOutput());
             formaters.Add(new DefaultConsoleFormater());
