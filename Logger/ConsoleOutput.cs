@@ -6,7 +6,7 @@ namespace NLogger
 {
     public class ConsoleOutput: ILoggerOutput
     {
-        ConsoleColor[] colors = new ConsoleColor[5];
+        Dictionary<LogType, ConsoleColor> colors = new Dictionary<LogType, ConsoleColor>();
 
         public ConsoleOutput()
         {
@@ -24,45 +24,28 @@ namespace NLogger
 
         public void ChangeColor(LogType logType, ConsoleColor color)
         {
-            switch(logType)
-            {
-                case LogType.Info:
-                    colors[0] = color;
-                    break;
-                case LogType.Warning:
-                    colors[1] = color;
-                    break;
-                case LogType.Error:
-                    colors[2] = color;
-                    break;
-                case LogType.Debug:
-                    colors[3] = color;
-                    break;
-                case LogType.FatalError:
-                    colors[4] = color;
-                    break;
-            };
+            if (colors.ContainsKey(logType))
+                colors[logType] = color;
+            else
+                colors.Add(logType, color);
         }
 
         public void ResetColorsToDefaultColor()
         {
-            colors[0] = ConsoleColor.DarkGreen;
-            colors[1] = ConsoleColor.DarkYellow;
-            colors[2] = ConsoleColor.DarkRed;
-            colors[3] = ConsoleColor.DarkBlue;
-            colors[4] = ConsoleColor.Red;
+            colors = new Dictionary<LogType, ConsoleColor>
+            {
+                { LogType.Info, ConsoleColor.DarkGreen },
+                { LogType.Info2, ConsoleColor.DarkMagenta },
+                { LogType.Warning, ConsoleColor.DarkYellow },
+                { LogType.Error, ConsoleColor.DarkRed },
+                { LogType.Debug, ConsoleColor.DarkBlue },
+                { LogType.FatalError, ConsoleColor.Red }
+            };
         }
 
         ConsoleColor GetConsoleColor(LogType type)
         {
-            return type switch
-            {
-                LogType.Info => colors[0],
-                LogType.Warning => colors[1],
-                LogType.Error => colors[2],
-                LogType.Debug => colors[3],
-                _ => colors[4],
-            };
+            return colors[type];
         }
     }
 }

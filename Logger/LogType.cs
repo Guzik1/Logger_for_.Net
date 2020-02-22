@@ -7,6 +7,7 @@ namespace NLogger
     public enum LogType
     {
         Info,
+        Info2,
         Warning,
         Error,
         FatalError,
