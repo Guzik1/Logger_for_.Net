@@ -39,8 +39,7 @@ For view examples click [here](https://github.com/Guzik1/Logger_for_.Net/tree/ma
 - NUnit Framework (for testing)
 
 ## Status
-Version: Beta. <br />
-This project is: in progress.
+Version: 1.0.0
 
 ## License
 [MIT License](https://github.com/Guzik1/Logger_for_.Net/blob/master/LICENSE) © [Sebastian Guzik](https://github.com/Guzik1).
