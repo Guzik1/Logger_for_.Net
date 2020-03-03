@@ -10,7 +10,7 @@ namespace Examples
         public void Example()
         {
             Logger logger = new Logger();
-            logger.AddOutput(new OwnConsoleOutput, new DefaultConsoleFormater());
+            logger.AddOutput(new OwnConsoleOutput(), new DefaultConsoleFormater());
 
             logger.Info("Info in own consol output.");  // Log on info layer.
 

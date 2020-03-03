@@ -14,7 +14,7 @@ namespace Examples
             Logger logger = new Logger();
             logger.AddOutput(new FileOutput(path), new DefaultFileFormater());
             // or //
-            logger = new Logger(new FileOutput(path), new DefaultFileFormater());
+            logger = new Logger(new FileOutput(path , 10), new DefaultFileFormater());  // <--- 10 is a limit when logs save to file (and save to file on application exit).
 
             logger.Info("Info");  // Log info layer.
 
