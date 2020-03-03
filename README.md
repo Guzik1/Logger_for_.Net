@@ -1,6 +1,6 @@
 # Logger for C#/.Net
 
-This project is a simple implement a mathematical graph library that provides stores data (with data in node and data in edge) represents on graph and algorithm to operating on this data.
+This project is a simple log manager with multi output and formaters.
 
 ## General info
 ### Features:
@@ -13,9 +13,9 @@ This project is a simple implement a mathematical graph library that provides st
 - Add own output
 
 ## Setup
+[Nuget package available here!](https://www.nuget.org/packages/NLogger/1.0.0)
 Compiling bin library is located in /bin folder. <br />
 Copy NLogger (.dll files) to your project.<br />
-NuGet package available soon.
 
 ## Simple code example
 ```C#
@@ -39,8 +39,7 @@ For view examples click [here](https://github.com/Guzik1/Logger_for_.Net/tree/ma
 - NUnit Framework (for testing)
 
 ## Status
-Version: Beta. <br />
-This project is: in progress.
+Version: 1.0.0
 
 ## License
 [MIT License](https://github.com/Guzik1/Logger_for_.Net/blob/master/LICENSE) © [Sebastian Guzik](https://github.com/Guzik1).
