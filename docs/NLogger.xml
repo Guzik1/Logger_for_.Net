@@ -1,0 +1,282 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>NLogger</name>
+    </assembly>
+    <members>
+        <member name="T:NLogger.ConsoleOutput">
+            <summary>
+            Standard console output, implemented ILoggerOutput.
+            </summary>
+        </member>
+        <member name="M:NLogger.ConsoleOutput.#ctor">
+            <summary>
+            Constructor, set default color.
+            </summary>
+        </member>
+        <member name="M:NLogger.ConsoleOutput.Log(NLogger.LogType,System.String)">
+            <summary>
+            Write log on screen.
+            </summary>
+            <param name="logType">Log type.</param>
+            <param name="message">String of formated message.</param>
+        </member>
+        <member name="M:NLogger.ConsoleOutput.ChangeColor(NLogger.LogType,System.ConsoleColor)">
+            <summary>
+            Change one color for one log type.
+            </summary>
+            <param name="logType">Type of log, for which change color.</param>
+            <param name="newColor">New color.</param>
+        </member>
+        <member name="M:NLogger.ConsoleOutput.ResetColorsToDefaultColor">
+            <summary>
+            Reste log colors to default.
+            </summary>
+        </member>
+        <member name="T:NLogger.DefaultConsoleFormater">
+            <summary>
+            Deafult formater for console output.
+            </summary>
+        </member>
+        <member name="M:NLogger.DefaultConsoleFormater.Format(NLogger.LogType,System.String)">
+            <summary>
+            Format message.
+            </summary>
+            <param name="logType">Log type.</param>
+            <param name="message">String message.</param>
+            <returns>Formated message (format: "HH:MM:SS - message").</returns>
+        </member>
+        <member name="T:NLogger.DefaultFileFormater">
+            <summary>
+            Deafult file formater for one file output. 
+            </summary>
+        </member>
+        <member name="M:NLogger.DefaultFileFormater.Format(NLogger.LogType,System.String)">
+            <summary>
+            Format message.
+            </summary>
+            <param name="logType">Log type.</param>
+            <param name="message">String message.</param>
+            <returns>Formated message (format: "logType: HH:MM:SS - message"), change message to upper case for error and fatal error</returns>
+        </member>
+        <member name="T:NLogger.FileOutput">
+            <summary>
+            Default one file output.
+            </summary>
+        </member>
+        <member name="M:NLogger.FileOutput.#ctor(System.String)">
+            <summary>
+            Constructon to set file path. Log limit set to default 15 logs.
+            </summary>
+            <param name="filePath">File path whith director file name and file extension.</param>
+        </member>
+        <member name="M:NLogger.FileOutput.#ctor(System.String,System.Int32)">
+            <summary>
+            Constructon to set file path and limit when logs are been save to file. Default limit is 15 logs on all layer.
+            </summary>
+            <param name="filePath">File path whith director file name and file extension.</param>
+            <param name="limitWhenLogSave">Limit at which will be log saved.</param>
+        </member>
+        <member name="M:NLogger.FileOutput.Log(NLogger.LogType,System.String)">
+            <summary>
+            Write log to file.
+            </summary>
+            <param name="logType">Log type.</param>
+            <param name="message">String of formated message.</param>
+        </member>
+        <member name="T:NLogger.ILogFormater">
+            <summary>
+            Interface for custom logger formater.
+            </summary>
+        </member>
+        <member name="M:NLogger.ILogFormater.Format(NLogger.LogType,System.String)">
+            <summary>
+            Format message.
+            </summary>
+            <param name="logType">Log type</param>
+            <param name="message">String of message.</param>
+            <returns>Formated message.</returns>
+        </member>
+        <member name="T:NLogger.ILoggerOutput">
+            <summary>
+            Interface for custom logger output.
+            </summary>
+        </member>
+        <member name="M:NLogger.ILoggerOutput.Log(NLogger.LogType,System.String)">
+            <summary>
+            Write log in custom output.
+            </summary>
+            <param name="logType">Log type.</param>
+            <param name="message">String of message.</param>
+        </member>
+        <member name="T:NLogger.Logger">
+            <summary>
+            Logger main class.
+            </summary>
+        </member>
+        <member name="M:NLogger.Logger.#ctor">
+            <summary>
+            Default constructor.
+            </summary>
+        </member>
+        <member name="M:NLogger.Logger.#ctor(NLogger.ILoggerOutput,NLogger.ILogFormater)">
+            <summary>
+            Constructor which add output and formater for output.
+            </summary>
+            <param name="output">Output when implemented ILoggerOutput</param>
+            <param name="formater">>Formater for output when implemented ILogFormater</param>
+        </member>
+        <member name="M:NLogger.Logger.AddDefaultConsoleOutputAndDefaultConsoleFormater">
+            <summary>
+            Add default console output and default console formater for output.
+            </summary>
+        </member>
+        <member name="M:NLogger.Logger.AddOutput(NLogger.ILoggerOutput,NLogger.ILogFormater)">
+            <summary>
+            Add output and formater to this output.
+            </summary>
+            <param name="output">Output, class implemented ILoggerOutput</param>
+            <param name="formater">Formater for output, class implemented ILogFormater</param>
+        </member>
+        <member name="M:NLogger.Logger.DeleteAllOutput">
+            <summary>
+            Delete all output from logger registers.
+            </summary>
+        </member>
+        <member name="M:NLogger.Logger.Info(System.String)">
+            <summary>
+            Log message on Info layer.
+            </summary>
+            <param name="message">Info message.</param>
+        </member>
+        <member name="M:NLogger.Logger.Info(System.String,System.String[])">
+            <summary>
+            Log message on Info layer.
+            </summary>
+            <param name="formatedMessage">Info formated message.</param>
+            <param name="param">Strings to insert in format message.</param>
+        </member>
+        <member name="M:NLogger.Logger.Info2(System.String)">
+            <summary>
+            Log message on Info2 layer.
+            </summary>
+            <param name="message">Info message.</param>
+        </member>
+        <member name="M:NLogger.Logger.Info2(System.String,System.String[])">
+            <summary>
+            Log message on Info2 layer.
+            </summary>
+            <param name="formatedMessage">Info2 formated message.</param>
+            <param name="param">Strings to insert in format message.</param>
+        </member>
+        <member name="M:NLogger.Logger.Error(System.String)">
+            <summary>
+            Log message on Error layer.
+            </summary>
+            <param name="message">Error message.</param>
+        </member>
+        <member name="M:NLogger.Logger.Error(System.String,System.String[])">
+            <summary>
+            Log message on Error layer.
+            </summary>
+            <param name="formatedMessage">Error formated message.</param>
+            <param name="param">Strings to insert in format message.</param>
+        </member>
+        <member name="M:NLogger.Logger.Warning(System.String)">
+            <summary>
+            Log message on Warning layer.
+            </summary>
+            <param name="message">Warning message.</param>
+        </member>
+        <member name="M:NLogger.Logger.Warning(System.String,System.String[])">
+            <summary>
+            Log message on Warning layer.
+            </summary>
+            <param name="formatedMessage">Warning formated message.</param>
+            <param name="param">Strings to insert in format message.</param>
+        </member>
+        <member name="M:NLogger.Logger.Debug(System.String)">
+            <summary>
+            Log message on Debug layer.
+            </summary>
+            <param name="message">Debug message.</param>
+        </member>
+        <member name="M:NLogger.Logger.Debug(System.String,System.String[])">
+            <summary>
+            Log message on Debug layer.
+            </summary>
+            <param name="formatedMessage">Debug formated message.</param>
+            <param name="param">Strings to insert in format message.</param>
+        </member>
+        <member name="M:NLogger.Logger.FatalError(System.String)">
+            <summary>
+            Log message on FatalError layer.
+            </summary>
+            <param name="message">Debug message.</param>
+        </member>
+        <member name="M:NLogger.Logger.FatalError(System.String,System.String[])">
+            <summary>
+            Log message on FatalError layer.
+            </summary>
+            <param name="formatedMessage">FatalError formated message.</param>
+            <param name="param">Strings to insert in format message.</param>
+        </member>
+        <member name="M:NLogger.Logger.Log(NLogger.LogType,System.String)">
+            <summary>
+            Log message on selected layer.
+            </summary>
+            <param name="logType">Log layer.</param>
+            <param name="message">String of message.</param>
+        </member>
+        <member name="T:NLogger.LogType">
+            <summary>
+            Enum of log types.
+            </summary>
+        </member>
+        <member name="F:NLogger.LogType.Info">
+            <summary>Info layer</summary>
+        </member>
+        <member name="F:NLogger.LogType.Info2">
+            <summary>Info2 layer</summary>
+        </member>
+        <member name="F:NLogger.LogType.Warning">
+            <summary>Waring layer</summary>
+        </member>
+        <member name="F:NLogger.LogType.Error">
+            <summary>Error layer</summary>
+        </member>
+        <member name="F:NLogger.LogType.FatalError">
+            <summary>Fatal error layer</summary>
+        </member>
+        <member name="F:NLogger.LogType.Debug">
+            <summary>Debug layer</summary>
+        </member>
+        <member name="T:NLogger.MultiFileOutput">
+            <summary>
+            Default multiple file output (one file for one log layer), file name is a layer name. Implemented ILoggerOutput interface.
+            </summary>
+        </member>
+        <member name="M:NLogger.MultiFileOutput.#ctor(System.String,System.String)">
+            <summary>
+            Constructon to set file directory and file extension. Log limit set to default 10 logs on one layer. File name is a layer name.
+            </summary>
+            <param name="fileDirectoryPath">File directory.</param>
+            <param name="fileExtension">File extension.</param>
+        </member>
+        <member name="M:NLogger.MultiFileOutput.#ctor(System.String,System.String,System.Int32)">
+            <summary>
+            Constructon to set file directory and file extension. Log limit set to default 10 logs on one layer. File name is a layer name.
+            </summary>
+            <param name="fileDirectoryPath">File directory.</param>
+            <param name="fileExtension">File extension.</param>
+            <param name="logLimit">Limit at which will be log saved.</param>
+        </member>
+        <member name="M:NLogger.MultiFileOutput.Log(NLogger.LogType,System.String)">
+            <summary>
+            Write log to files.
+            </summary>
+            <param name="logType">Log type.</param>
+            <param name="message">String of formated message.</param>
+        </member>
+    </members>
+</doc>

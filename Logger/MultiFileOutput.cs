@@ -7,6 +7,9 @@ using System.Threading;
 
 namespace NLogger
 {
+    /// <summary>
+    /// Default multiple file output (one file for one log layer), file name is a layer name. Implemented ILoggerOutput interface.
+    /// </summary>
     public class MultiFileOutput : ILoggerOutput
     {
         string fileDirectoryPath;
@@ -17,6 +20,11 @@ namespace NLogger
         int logLimit = 10;
         readonly object Lock = new object();
 
+        /// <summary>
+        /// Constructon to set file directory and file extension. Log limit set to default 10 logs on one layer. File name is a layer name.
+        /// </summary>
+        /// <param name="fileDirectoryPath">File directory.</param>
+        /// <param name="fileExtension">File extension.</param>
         public MultiFileOutput(string fileDirectoryPath, string fileExtension)
         {
             this.fileDirectoryPath = fileDirectoryPath;
@@ -25,6 +33,12 @@ namespace NLogger
             InicjalizeArrays();
         }
 
+        /// <summary>
+        /// Constructon to set file directory and file extension. Log limit set to default 10 logs on one layer. File name is a layer name.
+        /// </summary>
+        /// <param name="fileDirectoryPath">File directory.</param>
+        /// <param name="fileExtension">File extension.</param>
+        /// <param name="logLimit">Limit at which will be log saved.</param>
         public MultiFileOutput(string fileDirectoryPath, string fileExtension, int logLimit)
         {
             this.fileDirectoryPath = fileDirectoryPath;
@@ -41,6 +55,11 @@ namespace NLogger
             logCount = new int[count];
         }
 
+        /// <summary>
+        /// Write log to files.
+        /// </summary>
+        /// <param name="logType">Log type.</param>
+        /// <param name="message">String of formated message.</param>
         public void Log(LogType logType, string message)
         {
             lock(Lock){

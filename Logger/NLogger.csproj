@@ -3,9 +3,21 @@
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
-    <Description>This project is a simple log manager with multi output and formaters.</Description>
+    <Description>This project is a simple log manager with multi independent output and independent formaters.</Description>
     <RepositoryType>GITHUB</RepositoryType>
     <RepositoryUrl>https://github.com/Guzik1/Logger_for_.Net</RepositoryUrl>
+    <AssemblyVersion>1.1.0.0</AssemblyVersion>
+    <FileVersion>1.1.0.0</FileVersion>
+    <PackageProjectUrl>https://github.com/Guzik1/Logger_for_.Net</PackageProjectUrl>
+    <PackageTags>Log manager, Logger</PackageTags>
+    <Version>1.1.0</Version>
+    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+    <Authors>Sebastian Guzik</Authors>
+    <Copyright>Sebastian Guzik</Copyright>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DocumentationFile>A:\Visual studio project\LoggerGit\docs\NLogger.xml</DocumentationFile>
   </PropertyGroup>
 
 </Project>
