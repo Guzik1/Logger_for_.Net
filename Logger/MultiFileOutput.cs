@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Text;
+using System.Threading;
 
 namespace NLogger
 {
@@ -10,25 +12,73 @@ namespace NLogger
         string fileDirectoryPath;
         string fileExtension;
 
+        string[] logsToSave;
+        int[] logCount;
+        int logLimit = 10;
+        readonly object Lock = new object();
+
         public MultiFileOutput(string fileDirectoryPath, string fileExtension)
         {
             this.fileDirectoryPath = fileDirectoryPath;
             this.fileExtension = fileExtension;
+
+            InicjalizeArrays();
+        }
+
+        public MultiFileOutput(string fileDirectoryPath, string fileExtension, int logLimit)
+        {
+            this.fileDirectoryPath = fileDirectoryPath;
+            this.fileExtension = fileExtension;
+            this.logLimit = logLimit;
+
+            InicjalizeArrays();
+        }
+
+        void InicjalizeArrays()
+        {
+            int count = Enum.GetValues(typeof(LogType)).Cast<int>().Last();
+            logsToSave = new string[count];
+            logCount = new int[count];
         }
 
         public void Log(LogType logType, string message)
         {
-            message += Environment.NewLine;
-            string path = GetFullFilePath(logType);
+            lock(Lock){
+                int index = (int)logType;
 
-            if (!File.Exists(path))
-            {
-                File.AppendAllText(path, message);
+                logsToSave[index] += message + Environment.NewLine;
+                logCount[index]++;
+
+                if (logCount[index] >= logLimit)
+                    RunSaveToFile(logType);
             }
-            else
+
+        }
+
+        void RunSaveToFile(LogType logType)
+        {
+            Thread saveThread = new Thread(this.SaveToFile);
+            saveThread.Start(logType);
+        }
+
+        void SaveToFile(object logType)
+        {
+            lock (Lock)
             {
-                Directory.CreateDirectory(Path.GetDirectoryName(path));
-                File.AppendAllText(path, message);
+                int index = (int)logType;
+                string path = GetFullFilePath((LogType)logType);
+
+                if (!File.Exists(path))
+                {
+                    File.AppendAllText(path, logsToSave[index]);
+                }
+                else
+                {
+                    Directory.CreateDirectory(Path.GetDirectoryName(path));
+                    File.AppendAllText(path, logsToSave[index]);
+                }
+
+                logsToSave[index] = "";
             }
         }
 

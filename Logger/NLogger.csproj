@@ -2,6 +2,10 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <Description>This project is a simple log manager with multi output and formaters.</Description>
+    <RepositoryType>GITHUB</RepositoryType>
+    <RepositoryUrl>https://github.com/Guzik1/Logger_for_.Net</RepositoryUrl>
   </PropertyGroup>
 
 </Project>
